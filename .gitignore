@@ -1,0 +1,20 @@
+# Ignorar el entorno virtual (venv o env)
+venv/
+env/
+.env/
+
+# Ignorar bases de datos SQLite
+*.sqlite3
+
+# Ignorar archivos de migración de Django
+*.pyc
+__pycache__/
+db.sqlite3
+
+# Ignorar configuraciones de Django que contienen secretos
+*.env
+config/settings.py
+config/*.py
+
+# Archivos de logs
+*.log
