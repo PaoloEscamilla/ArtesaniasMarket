@@ -1,0 +1,9 @@
+<h1>Productos Disponibles</h1>
+<ul>
+    {% for producto in productos %}
+        <li>
+            {{ producto.nombre }} - ${{ producto.precio }}
+            <a href="{% url 'agregar_carrito' producto.id %}">Agregar al carrito</a>
+        </li>
+    {% endfor %}
+</ul>

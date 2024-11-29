@@ -1,0 +1,51 @@
+<!-- tienda/templates/tienda/carrito.html -->
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6HfU6d5f4kJ0nQmowbg2zHgF7l5pC1e0u5F5dUoDAksf1cjmF8J3h19iI8" crossorigin="anonymous">
+
+<h1>Mi Carrito</h1>
+<ul class="list-group">
+    {% for item in productos %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <img src="{{ item.producto.imagen.url }}" alt="{{ item.producto.nombre }}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+                <span>{{ item.producto.nombre }}</span>
+            </div>
+            <div>
+                <!-- Formulario para aumentar la cantidad -->
+                <form action="{% url 'actualizar_cantidad' item.producto.id 1 %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="btn btn-sm btn-outline-primary" type="submit">+</button>
+                </form>
+                
+                <!-- Mostrar la cantidad -->
+                <span class="badge bg-primary rounded-pill">{{ item.cantidad }}</span>
+                
+                <!-- Formulario para disminuir la cantidad -->
+                <form action="{% url 'actualizar_cantidad' item.producto.id 1 %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="btn btn-sm btn-outline-danger" type="submit">-</button>
+                </form>
+                
+                <!-- Formulario para resetear la cantidad -->
+                <form action="{% url 'resetear_cantidad' item.producto.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="btn btn-sm btn-outline-warning" type="submit">Resetear</button>
+                </form>
+            </div>
+            <span class="badge bg-success rounded-pill">${{ item.total_producto }}</span>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Total a Pagar: ${{ total_carrito }}</h3>
+
+<!-- Botón de retroceso -->
+<a href="javascript:history.back()" class="btn btn-secondary">Regresar</a>
+
+<!-- Botón para volver al inicio -->
+<a href="{% url 'pagina_inicio' %}" class="btn btn-primary">Volver al Inicio</a>
+
+<!-- Botón para finalizar compra -->
+<a href="{% url 'finalizar_compra' %}" class="btn btn-success">Finalizar Compra</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0P8O5I8oBXHf3Z4leL5kX5r5F5L4h4t5cb5f5uYF6c6l6d4g" crossorigin="anonymous"></script>

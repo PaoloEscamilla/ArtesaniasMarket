@@ -1,0 +1,27 @@
+<!-- tienda/templates/tienda/pagina_inicio.html -->
+{% load static %}
+<!-- Enlace a Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6HfU6d5f4kJ0nQmowbg2zHgF7l5pC1e0u5F5dUoDAksf1cjmF8J3h19iI8" crossorigin="anonymous">
+
+<h1>Bienvenido a la Tienda</h1>
+<p>Explora nuestros productos y empieza a comprar.</p>
+
+<!-- Mostrar productos -->
+<div class="row">
+    {% for producto in productos %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    <a href="{% url 'agregar_carrito' producto.id %}" class="btn btn-primary">Agregar al Carrito</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Bootstrap JS (si es necesario para funcionalidades interactivas) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0P8O5I8oBXHf3Z4leL5kX5r5F5L4h4t5cb5f5uYF6c6l6d4g" crossorigin="anonymous"></script>
