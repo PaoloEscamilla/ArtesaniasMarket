@@ -1,27 +1,57 @@
-<!-- tienda/templates/tienda/pagina_inicio.html -->
+{% extends 'tienda/base.html' %}
 {% load static %}
-<!-- Enlace a Bootstrap 5 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6HfU6d5f4kJ0nQmowbg2zHgF7l5pC1e0u5F5dUoDAksf1cjmF8J3h19iI8" crossorigin="anonymous">
 
-<h1>Bienvenido a la Tienda</h1>
-<p>Explora nuestros productos y empieza a comprar.</p>
+{% block title %}
+Bienvenido a la tienda
+{% endblock %}
 
-<!-- Mostrar productos -->
-<div class="row">
-    {% for producto in productos %}
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="card-img-top" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ producto.nombre }}</h5>
-                    <p class="card-text">{{ producto.descripcion }}</p>
-                    <p class="card-text">Precio: ${{ producto.precio }}</p>
-                    <a href="{% url 'agregar_carrito' producto.id %}" class="btn btn-primary">Agregar al Carrito</a>
+{% block content %}
+<div class="container mt-5">
+    <!-- Carrusel de imágenes -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/slide1.jpg' %}" class="d-block w-100" alt="Slide 1" style="height: 400px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Calidad Artesanal</h5>
+                    <p>Descubre los mejores productos hechos a mano.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/slide2.jpg' %}" class="d-block w-100" alt="Slide 2" style="height: 400px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Únicos y Exclusivos</h5>
+                    <p>Encuentra piezas que no encontrarás en otro lugar.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/slide3.jpg' %}" class="d-block w-100" alt="Slide 3" style="height: 400px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Directo de Nuestros Artesanos</h5>
+                    <p>Apoya el talento local comprando productos auténticos.</p>
                 </div>
             </div>
         </div>
-    {% endfor %}
-</div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
 
-<!-- Bootstrap JS (si es necesario para funcionalidades interactivas) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0P8O5I8oBXHf3Z4leL5kX5r5F5L4h4t5cb5f5uYF6c6l6d4g" crossorigin="anonymous"></script>
+    <!-- Bienvenida -->
+    <div class="text-center mt-5">
+        <h1>Bienvenido a la Tienda de Artesanías</h1>
+        <p class="lead">Explora productos únicos y auténticos, hechos con amor por nuestros talentosos artesanos.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary btn-lg mt-3">Iniciar Sesión</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,45 +1,32 @@
-/* tienda/static/css/styles.css */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
 }
 
-h1, h3 {
+h1, .lead {
     color: #333;
 }
 
-.productos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
+.carousel-caption h5 {
+    font-size: 1.75rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.producto {
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.carousel-caption p {
+    font-size: 1.25rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-.producto img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.btn-agregar {
-    text-decoration: none;
+.btn-primary {
     background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 10px;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
 }
 
-.btn-agregar:hover {
+.btn-primary:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
+

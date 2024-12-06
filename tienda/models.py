@@ -1,4 +1,3 @@
-# tienda/models.py
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -13,12 +12,11 @@ class Vendedor(models.Model):
 
 # Modelo para los productos
 class Producto(models.Model):
-    vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    cantidad_disponible = models.PositiveIntegerField()
-    imagen = models.ImageField(upload_to='productos/')
+    imagen = models.ImageField(upload_to='productos/', null=True, blank=True)  # Este es el campo para las imágenes
+    vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE, related_name='productos')
 
     def __str__(self):
         return self.nombre
